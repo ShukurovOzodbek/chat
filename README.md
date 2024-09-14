@@ -1,3 +1,3 @@
 ### Technologies 
 
-Kafaka, RabbitMq, NestJs, NuxtJs, Pinia, Docker, Nginx, Redis
+RabbitMq, NestJs, NuxtJs, Pinia, Docker, Nginx, Redis
