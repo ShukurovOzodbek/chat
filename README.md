@@ -1,3 +1,3 @@
 ### Technologies 
 
-RabbitMq, NestJs, NuxtJs, Pinia, Docker, Nginx, Redis
+RabbitMq, NestJs, NextJs, RTK, Docker, Nginx, Redis
