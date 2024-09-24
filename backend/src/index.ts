@@ -3,8 +3,6 @@ import dotenv from "dotenv";
 import router from './modules';
 import cors from 'cors';
 import mongooseDB from './mongooseDB';
-import passport from 'passport';
-import './strategies/local-strategy';
 import session from 'express-session';
 import MongoStore from "connect-mongo";
 import mongoose from "mongoose";
@@ -30,8 +28,6 @@ app.use(session({
         client: mongoose.connection.getClient(),
     }),
 }));
-app.use(passport.initialize());
-app.use(passport.session());
 
 // routers 
 app.use('/api/v1', router);

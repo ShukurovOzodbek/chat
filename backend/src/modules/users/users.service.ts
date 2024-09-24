@@ -1,16 +1,10 @@
 import { Request, Response } from "express";
 import { User } from "./users.schema";
+import { hashPassword } from "../../utils/helpers";
 
 export class UsersService {
-    User: any;
-
-    constructor() {
-        this.User = User;
-    }
 
     async signin(req: Request, res: Response) {
-        console.log(req.user);
-
         res.json({ ok: true });
     }
 
@@ -19,6 +13,18 @@ export class UsersService {
 
         if (!data.email || !data.password || !data.username) return res.status(400).send({ message: 'Bad credentials' });
 
-        
+        data.password = hashPassword(data.password);
+
+        try {
+            await User.create(data);
+        } catch (e: any) {
+            res.status(400).send(e.message);
+        }
+
+        res.json({ message: 'User is created' });
+    }
+
+    async getMe(req: Request, res: Response) {
+        res.json({ ok: true });
     }
 }
