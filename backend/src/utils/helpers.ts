@@ -1,4 +1,6 @@
 import * as bcrypt from 'bcrypt';
+import { JWTPayload } from '../types';
+import jwt from 'jsonwebtoken';
 
 export function hashPassword(password: string) {
     const saltRounds = 10;
@@ -8,4 +10,11 @@ export function hashPassword(password: string) {
 
 export function comparePassword(hash: string, password: string) {
     return bcrypt.compareSync(hash, password);
+}
+
+export function generateJWT(payload: JWTPayload) {
+    const secret: any = process.env.JWT_SECRET;
+    const accessToken = jwt.sign(payload, secret);
+
+    return accessToken;
 }
