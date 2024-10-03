@@ -9,7 +9,7 @@ export function hashPassword(password: string) {
 }
 
 export function comparePassword(hash: string, password: string) {
-    return bcrypt.compareSync(hash, password);
+    return bcrypt.compareSync(password, hash);
 }
 
 export function generateJWT(payload: JWTPayload) {

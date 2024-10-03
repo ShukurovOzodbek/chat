@@ -8,10 +8,13 @@ export class UsersService {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
         
+        
         if (!user) return res.status(400).json({ message: 'Bad credentials' });
         if (!user.password) return res.status(400).json({ message: 'Something went wrong' });
 
         const isCorrectPass = comparePassword(user.password, password);
+
+        console.log(isCorrectPass);
         
         if (!isCorrectPass) return res.status(400).json({ message: 'Bad credentails' });
 
