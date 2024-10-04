@@ -12,9 +12,9 @@ export function comparePassword(hash: string, password: string) {
     return bcrypt.compareSync(password, hash);
 }
 
-export function generateJWT(payload: JWTPayload) {
+export function generateJWT(payload: JWTPayload, addons: any) {
     const secret: any = process.env.JWT_SECRET;
-    const accessToken = jwt.sign(payload, secret);
+    const accessToken = jwt.sign(payload, secret, addons);
 
     return accessToken;
 }

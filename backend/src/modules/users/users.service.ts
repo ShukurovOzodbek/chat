@@ -2,23 +2,21 @@ import { Request, Response } from "express";
 import { User } from "./users.schema";
 import { comparePassword, generateJWT, hashPassword } from "../../utils/helpers";
 
+
 export class UsersService {
 
     async signin(req: Request, res: Response) {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
-        
-        
+
         if (!user) return res.status(400).json({ message: 'Bad credentials' });
         if (!user.password) return res.status(400).json({ message: 'Something went wrong' });
 
         const isCorrectPass = comparePassword(user.password, password);
 
-        console.log(isCorrectPass);
-        
         if (!isCorrectPass) return res.status(400).json({ message: 'Bad credentails' });
 
-        const accessToken = generateJWT({ _id: user._id });
+        const accessToken = generateJWT({ _id: user._id }, { expiresIn: '3d' });
 
         res.json({
             accessToken: accessToken,
