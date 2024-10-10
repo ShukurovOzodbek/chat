@@ -19,8 +19,7 @@ export class UsersService {
         const accessToken = generateJWT({ _id: user._id }, { expiresIn: '3d' });
 
         res.json({
-            accessToken: accessToken,
-            user
+            accessToken: accessToken
         });
     }
 
@@ -40,7 +39,7 @@ export class UsersService {
         res.json({ message: 'User is created' });
     }
 
-    async getMe(req: Request, res: Response) {
-        res.json({ ok: true });
+    async getMe(req: any, res: Response) {
+        res.json({ user: req.user });
     }
 }
