@@ -1,42 +1,20 @@
 import { Request, Response } from "express";
 import { User } from "./users.schema";
 import { comparePassword, generateJWT, hashPassword } from "../../utils/helpers";
+import { checkPassword, checkUser } from "../../utils/auth";
 
 
 export class UsersService {
 
-    async signin(req: Request, res: Response) {
-        const { email, password } = req.body;
-        const user = await User.findOne({ email });
+    async auth(req: Request, res: Response) {
+        const { body } = req;
 
-        if (!user) return res.status(400).json({ message: 'Bad credentials' });
-        if (!user.password) return res.status(400).json({ message: 'Something went wrong' });
+        if (body?.phoneNumber) return res.status(400).json({ message: 'Bad credentials' });
 
-        const isCorrectPass = comparePassword(user.password, password);
+        const user: any = await User.findOne({ phoneNumber: body.phoneNumber });
 
-        if (!isCorrectPass) return res.status(400).json({ message: 'Bad credentails' });
-
-        const accessToken = generateJWT({ _id: user._id }, { expiresIn: '3d' });
-
-        res.json({
-            accessToken: accessToken
-        });
-    }
-
-    async signup(req: Request, res: Response) {
-        const { body: data } = req;
-
-        if (!data.email || !data.password || !data.username) return res.status(400).send({ message: 'Bad credentials' });
-
-        data.password = hashPassword(data.password);
-
-        try {
-            await User.create(data);
-        } catch (e: any) {
-            res.status(400).send(e);
-        }
-
-        res.json({ message: 'User is created' });
+        if (body.phoneNumber) checkUser(user, res);
+        if (body.password) await checkPassword(user, res, body);
     }
 
     async getMe(req: any, res: Response) {
