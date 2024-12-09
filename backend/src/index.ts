@@ -2,7 +2,7 @@ import express, { Express } from 'express';
 import dotenv from "dotenv";
 import router from './modules';
 import cors from 'cors';
-import mongooseDB from './mongooseDB';
+import { Mongoose } from './mongoose';
 import session from 'express-session';
 import MongoStore from "connect-mongo";
 import mongoose from "mongoose";
@@ -12,7 +12,7 @@ dotenv.config();
 const app: Express = express();
 
 // database
-mongooseDB();
+Mongoose();
 
 // middlwares 
 app.use(express.json());
