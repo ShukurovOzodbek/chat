@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { User } from "./users.schema";
-import { comparePassword, generateJWT, hashPassword } from "../../utils/helpers";
 import { checkPassword, checkUser } from "../../utils/auth";
 
 
