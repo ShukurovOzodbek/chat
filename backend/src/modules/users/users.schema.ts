@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const userSchema = new Schema({
-    phoneNumber: { type: mongoose.Schema.Types.String, required: true, unique: true },
+    email: { type: mongoose.Schema.Types.String, required: true, unique: true },
     displayName: { type: mongoose.Schema.Types.String, required: true },
     username: { type: mongoose.Schema.Types.String, unique: true },
     password: { type: mongoose.Schema.Types.String },
