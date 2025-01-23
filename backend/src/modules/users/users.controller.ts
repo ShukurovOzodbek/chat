@@ -1,7 +1,5 @@
-import { Router } from "express";
-import { UsersService } from "./users.service";
+class UserController {
+    
+}
 
-const router = Router();
-const users = new UsersService();
-
-export default router;
+export default UserController;
