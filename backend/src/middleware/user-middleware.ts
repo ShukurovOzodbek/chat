@@ -1,6 +1,6 @@
 import { NextFunction, Response } from "express";
 import jwt from 'jsonwebtoken';
-import { User } from "../modules/users/users.schema";
+import { User } from "../modules/users/user.model";
 
 export const authorize = async (req: any, res: Response, next: NextFunction) => {
     const accessToken = req.headers?.authorization;

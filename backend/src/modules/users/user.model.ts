@@ -13,4 +13,4 @@ const userSchema = new Schema({
     helpPhrase: { type: mongoose.Schema.Types.String }
 });
 
-export const User = mongoose.model('users', userSchema);
+export const User = mongoose.model('User', userSchema);

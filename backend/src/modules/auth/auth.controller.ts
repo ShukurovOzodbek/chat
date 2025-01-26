@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { User } from "../users/users.model";
+import { User } from "../users/user.model";
 import { comparePassword, generateJWT, verifyJWT } from "../../utils/helpers";
 
 class AuthController {
