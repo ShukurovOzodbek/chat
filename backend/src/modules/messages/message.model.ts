@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
 export const messageSchema = new mongoose.Schema({
-    message: { type: mongoose.Schema.Types.String, required: true },
+    message: { type: mongoose.Schema.Types.String },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-    image: { type: mongoose.Schema.Types.ObjectId, ref: 'Image' },
+    images: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Image' }],
     reply: { type: mongoose.Schema.Types.ObjectId, ref: 'Message' }
 }, { _id: true });
 
