@@ -1,6 +1,9 @@
 package main
 
-import "chat-app/src/server"
+import (
+	"chat-app/internal/server"
+)
+
 
 func main() {
 	server.InitServer()
