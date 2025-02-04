@@ -10,17 +10,14 @@ import (
 )
 
 func InitServer() {
-	godotenv.Load()
+	if err := godotenv.Load(); err != nil {
+		log.Println("No .env file found, reading configuration from environment variables")
+	}
 
-	http.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Pong!")
-	})
+	port := fmt.Sprintf(":%s", config.Getenv("PORT"))
+	fmt.Printf("Starting server at port http://localhost%s\n", port)
 
-	fmt.Printf("Starting server at port http://localhost:%s\n", config.Getenv("PORT"))
-
-	PORT := fmt.Sprintf(":%s", config.Getenv("PORT"))
-
-	if err := http.ListenAndServe(PORT, nil); err != nil {
+	if err := http.ListenAndServe(port, nil); err != nil {
 		log.Fatal(err)
 	}
 }
