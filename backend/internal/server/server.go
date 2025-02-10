@@ -3,6 +3,7 @@ package server
 import (
 	"chat-app/config"
 	"chat-app/internal/database"
+	"chat-app/internal/router"
 	"fmt"
 	"log"
 	"net/http"
@@ -17,12 +18,10 @@ func InitServer() {
 
 	database.ConnectDB()
 
+	router.NewRouter()
+	
 	port := fmt.Sprintf(":%s", config.Getenv("PORT"))
 	fmt.Printf("Starting server at port http://localhost%s\n", port)
-
-	mux := http.NewServeMux()
-
-	_ = mux
 
 	if err := http.ListenAndServe(port, nil); err != nil {
 		log.Fatal(err)

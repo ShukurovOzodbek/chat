@@ -2,6 +2,7 @@ package database
 
 import (
 	"chat-app/config"
+	"chat-app/internal/domain/entities"
 	"fmt"
 	"log"
 
@@ -24,7 +25,7 @@ func ConnectDB() {
 		log.Fatal("failed to connect to the database:", err)
 	}
 
-	if err := db.AutoMigrate(); err != nil {
+	if err := db.AutoMigrate(&entities.User{}); err != nil {
 		log.Fatal("failed to auto-migrate", err)
 	}
 }
