@@ -2,7 +2,7 @@ package database
 
 import (
 	"chat-app/config"
-	"chat-app/internal/domain/entities"
+	"chat-app/internal/service/entities"
 	"fmt"
 	"log"
 

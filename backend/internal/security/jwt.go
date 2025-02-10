@@ -19,7 +19,7 @@ func JWT() *Jwt {
 	}
 }
 
-func (j Jwt) generateToken(payload types.JwtPaylod) (string, error) {
+func (j Jwt) GenerateToken(payload types.JwtPaylod) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodES256, jwt.MapClaims{
 		"sub": payload.UserId,
 		"exp": payload.Exp,
@@ -36,7 +36,7 @@ func (j Jwt) generateToken(payload types.JwtPaylod) (string, error) {
 	return tokenString, nil
 }
 
-func (j Jwt) verifyToken(tokenString string) (*jwt.Token, error) {
+func (j Jwt) VerifyToken(tokenString string) (*jwt.Token, error) {
 	token, err := jwt.Parse(tokenString, func(t *jwt.Token) (interface{}, error) {
 		return j.secretKey, nil
 	})
@@ -46,7 +46,7 @@ func (j Jwt) verifyToken(tokenString string) (*jwt.Token, error) {
 	}
 
 	if !token.Valid {
-		return nil, fmt.Errorf("Invlid Token")
+		return nil, fmt.Errorf("invlid token")
 	}
 
 	return token, nil

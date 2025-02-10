@@ -1,7 +1,7 @@
 package router
 
 import (
-	"chat-app/internal/handlers"
+	"chat-app/internal/service/handlers"
 	"net/http"
 
 	"github.com/gorilla/mux"
