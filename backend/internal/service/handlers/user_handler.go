@@ -30,7 +30,7 @@ func (uh UserHandler) AuthUser(w http.ResponseWriter, r *http.Request) {
 	res := uh.usecases.Auth(body)
 
 	if res.Status != 200 && res.Status != 201 {
-		utils.SendErrorResponse(w, res.Status, res.ErrorMessage)
+		utils.SendErrorResponse(w, res.Status, res.Errors)
 		return
 	}
 

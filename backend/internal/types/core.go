@@ -12,7 +12,7 @@ type JwtPaylod struct {
 
 type Response struct {
 	Status       int    `json:"status"`
-	ErrorMessage string `json:"errorMessage"`
 	Body         map[string]interface{}
 	Errors       []string `json:"errors"`
 }
+

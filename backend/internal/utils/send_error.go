@@ -6,12 +6,12 @@ import (
 	"net/http"
 )
 
-func SendErrorResponse(w http.ResponseWriter, statusCode int, message string) {
+func SendErrorResponse(w http.ResponseWriter, statusCode int, message []string) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(statusCode)
 
 	errResponse := types.ErrorResponse{
-		Message: message,
+		Errors: message,
 	}
 
 	jsonData, err := json.Marshal(errResponse)
