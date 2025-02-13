@@ -11,8 +11,7 @@ type JwtPaylod struct {
 }
 
 type Response struct {
-	Status       int    `json:"status"`
-	Body         map[string]interface{}
-	Errors       []string `json:"errors"`
+	Status int `json:"status"`
+	Body   map[string]interface{}
+	Errors any `json:"errors"`
 }
-

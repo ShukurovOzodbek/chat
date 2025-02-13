@@ -1,11 +1,10 @@
 package repositories
 
-import "chat-app/internal/service/entities"
+import (
+	"chat-app/internal/service/entities"
+)
 
-type UserRepository struct {
-	BaseRepository[entities.User]
-}
 
-func NewUserRepository() *UserRepository {
-	return &UserRepository{}
+func NewUserRepository() *BaseRepository[entities.User] {
+	return NewBaseRepository[entities.User]()
 }

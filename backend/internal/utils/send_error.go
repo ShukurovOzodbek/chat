@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func SendErrorResponse(w http.ResponseWriter, statusCode int, message []string) {
+func SendErrorResponse(w http.ResponseWriter, statusCode int, message any) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(statusCode)
 
